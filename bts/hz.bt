@@ -1,0 +1,13 @@
+#!/usr/bin/env bpftrace
+
+uprobe:$1:$2
+{
+    @counts[comm, func] = count();
+}
+
+interval:s:1
+{
+    printf("\n[%s] Function call counts:\n", strftime("%H:%M:%S", nsecs));
+    print(@counts);
+    clear(@counts);
+}
