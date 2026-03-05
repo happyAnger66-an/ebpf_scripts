@@ -2,8 +2,8 @@
 
 lib_path="/opt/ros/jazzy/lib/librclcpp.so"
 
-if [ "$#" -ne 4 ]; then
-    echo "Usage: $0 [hz|latency] <topic_name> <usdt_lib> <usdt_function>"
+if [ "$#" -ne 2 ]; then
+    echo "Usage: $0 [hz|latency] <topic_name>"
     exit 1
 fi
 
@@ -14,8 +14,8 @@ fi
 
 sub_cmd=$1
 topic_name=$2
-usdt_lib=$3
-usdt_function=$4
+usdt_lib=$lib_path
+usdt_function=add_sub_record
 
 container_id=`docker ps -q --filter name=agent`
 if [ -z "$container_id" ]; then

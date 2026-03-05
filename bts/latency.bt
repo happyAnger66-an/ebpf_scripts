@@ -1,0 +1,6 @@
+#!/usr/bin/env bpftrace
+
+usdt:$2:$3 /str(arg1) == str($1)/
+{
+    printf("comm:%s topic: %s latency: %ldus\n", str(arg0), str(arg1), (arg3-arg2)/1000)
+}
