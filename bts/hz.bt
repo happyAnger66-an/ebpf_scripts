@@ -1,8 +1,8 @@
 #!/usr/bin/env bpftrace
 
-uprobe:$1:$2
+usdt:$2:$3 /str(arg0) == str($1)/
 {
-    @counts[comm, func] = count();
+	@counts[comm] = count();
 }
 
 interval:s:1
