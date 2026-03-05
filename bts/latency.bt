@@ -2,5 +2,5 @@
 
 usdt:$2:$3 /str(arg1) == str($1)/
 {
-    printf("comm:%s topic: %s latency: %ldus\n", str(arg0), str(arg1), (arg3-arg2)/1000)
+    printf("comm:%s topic: %s sched_cost: %ldus sub_callback_cost: %ldus ipc_cost: %ldus\n", str(arg0), str(arg1), arg4, arg5, (arg3-arg2)/1000)
 }
